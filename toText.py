@@ -15,15 +15,6 @@ data_file.close()
 
 x = json.loads(data)
 
-
-new = 'https://t.co/twIgAKJs3s'
-two = new
-start = new.find('https://t.co/')
-if (start != -1):
-	end = start + 24
-	two = new[0:start] + new[end:]
-print(two)
-
 o = open('/Users/willmorgus/Desktop/trumpitter/tweetText.txt', 'w')
 for obj in x:
 	new = obj['content']
