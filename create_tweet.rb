@@ -35,5 +35,21 @@ create_dictionary("test_text.txt")
 #puts "".length
 
 
-#Choose random word from the list of next possible words
-
+#output a word based on the probability of word appearing in a phrase
+def choose_word(set)
+	val_array = set.values
+	sum = val_array.inject(0){|sum,x| sum + x }
+	rand_num = rand(1..sum)
+	puts rand_num
+	prev_sum = 0
+	range_array = val_array.map {|x| prev_sum += x}
+	print range_array
+	index = 0
+	i = 0
+	while (rand_num > range_array[i]) do
+	  i += 1
+	  index += 1
+	end
+	key_array = set.keys
+	return key_array[index]
+end
