@@ -18,6 +18,7 @@ x = json.loads(data)
 o = open('/Users/willmorgus/Desktop/trumpitter/tweetText.txt', 'w')
 for obj in x:
 	new = obj['content']
+	new.replace('.','').replace(',','')
 	two = new
 	start = new.find('https://t.co/')
 	if (start != -1):
@@ -25,6 +26,6 @@ for obj in x:
 		two = new[0:start] + new[end:]
 	if (two.find('https://t.co/') == -1):
 		o.write(two.encode('UTF-8') + '\n')
-	
+o.write('\n')
 
 
