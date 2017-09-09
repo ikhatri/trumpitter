@@ -3,7 +3,13 @@
 def empty_set
 end
 
-def add_word
+#checks if word is in set, if not adds to set, if yes increments
+def add_to_set(set, word)
+	if !(set.key?(word))
+		set.merge!(word => 1)
+	else
+		set[word] += 1
+	end
 end
 
 def word_picker
