@@ -3,7 +3,6 @@ dictionary = Hash.new
 
 def create_dictionary(dict, text)
 	#Reading from the tweetText.txt
-	dict = Hash.new
 	File.open(text).each do |line|
 		string_left_to_parse = line[0..line.length - 2] #making the line the right length
 		
@@ -14,18 +13,31 @@ def create_dictionary(dict, text)
 		end
 	end
 
-
+	#loop through dictionary to update word_sets
 	File.open(text).each do |line|
 		string_left_to_parse = line[0..line.length - 2] #making the line the right length
 
-		#remove first word in sentence
-		word = find_next_word(string_left_to_parse)
-		string_left_to_parse = string_left_to_parse[(word.length + 1)..-1]
+		first_word = find_next_word(string_left_to_parse)
+		string_left_to_parse = string_left_to_parse[(first_word.length + 1)..-1]
 
-		puts string_left_to_parse
+		#store the last word to 
+		while !(string_left_to_parse.eql? nil) do #looping through every word
+			next_word = find_next_word(string_left_to_parse)
+			word_map = dict[first_word]
+			#puts word_map[next_word]
+			if(word_map[next_word].eql? nil)
+				word_map.store(next_word, 1)
+			else
+				num_appearances = word_map[next_word] + 1
+				word_map.store(next_word, num_appearances)
+			end
+			#dict.store(first_word, Hash.new) #add word to the hashtable dictionary mapping to empty word_sets
+			first_word = next_word
+			string_left_to_parse = string_left_to_parse[(next_word.length + 1)..-1]
+		end
 	end
 
-	#loop through dictionary to update word_sets
+
 end
 
 #Identifying different words in string
@@ -42,6 +54,7 @@ end
 
 #puts find_next_word("dog")
 create_dictionary(dictionary, "test_text.txt")
+puts dictionary
 #puts "".length
 
 
