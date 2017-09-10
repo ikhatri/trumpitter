@@ -12,8 +12,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile += %w( vendor-v=1503293283.css )
 Rails.application.config.assets.precompile += %w( screen-v=1503293283.css )
+Rails.application.config.assets.precompile += %w( vendor-v=1503293283.css )
 Rails.application.config.assets.precompile += %w( responsive-screen-v=1503293283.css )
 Rails.application.config.assets.precompile += %w( jquery.waypoints.min.js )
 Rails.application.config.assets.precompile += %w( parallax.min.js )

@@ -29,8 +29,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'bootstrap-sass'
-gem 'autoprefixer-rails'
+gem 'oauth'
+gem 'twitter'
+gem 'omniauth-twitter'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
