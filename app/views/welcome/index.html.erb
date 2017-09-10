@@ -11,13 +11,8 @@
     <meta name="twitter:site" content="@realDonaldTrump" />
     <meta name="twitter:image" content="https://assets.donaldjtrump.com/2017/web/homepage/og_image.jpg" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.donaldjtrump.com" />
-    <meta property="og:title" content="Donald J. Trump for President" />
     <meta property="og:description" content="Help continue our promise to Make America Great Again!" />
-    <meta property="og:image" content="https://assets.donaldjtrump.com/2017/web/homepage/og_image.jpg" />
     <link rel="shortcut icon" href="https://assets.donaldjtrump.com/_july16/icons/favicon.ico?v=1.3">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://assets.donaldjtrump.com/_july16/icons/32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://assets.donaldjtrump.com/_july16/icons/16x16.png">
     <%= stylesheet_link_tag "screen-v=1503293283.css" %>
     <%= stylesheet_link_tag "responsive-screen-v=1503293283.css" %>
     <script type="text/javascript">
@@ -52,13 +47,13 @@
 
         <header id="header" class>
             <div class="container">
-                <a href="index.html" id="header-logo" class="icon"></a>
+                <%= image_tag 'logo_condensed.png' %>
                 <nav id="header-nav-top">
                     <ul>
                         <li><a href="http://www.theonion.com/" target="_blank" class="header-nav-link ">News</a></li>
                         <li><a href="https://www.theodysseyonline.com/here-are-15-ugly-pictures-of-hillary-clinton-and-donald-trump"
                                 target="_blank" class="header-nav-link ">Gallery</a></li>
-                        <li><a href="#" class="header-nav-link ">About</a></li>
+                        <li><a href="https://github.com/ikhatri/trumpitter" class="header-nav-link ">About</a></li>
                         <li><a class="header-nav-link open-social-hub">Follow Us</a></li>
                     </ul>
                 </nav>
@@ -73,9 +68,9 @@
                     <nav>
                         <ul>
                             <li><a class="level-1" href="index.html" target="_blank">Home</a></li>
-                            <li><a class="level-1" href="media/index.html" target="_blank">News</a></li>
-                            <li><a class="level-1" href="gallery/index.html" target="_blank">Gallery</a></li>
-                            <li><a class="level-1" href="about/index.html" target="_blank">About</a></li>
+                            <li><a class="level-1" href="http://www.theonion.com/" target="_blank">News</a></li>
+                            <li><a class="level-1" href="https://www.theodysseyonline.com/here-are-15-ugly-pictures-of-hillary-clinton-and-donald-trump" target="_blank">Gallery</a></li>
+                            <li><a class="level-1" href="https://github.com/ikhatri/trumpitter" target="_blank">About</a></li>
                             <li><a class="level-1" href="https://infowipes.com"
                                     target="_blank">Shop</a></li>
                             <li>
@@ -102,49 +97,40 @@
                         <button onclick="changeText();" class = "btn btn-text-white btn-border-white arrow-btn">
 		                    Write the tweet!
 	                    </button>
+                        <!--
                         <button onclick="sendTweet();" class = "btn btn-text-white btn-border-white arrow-btn">
 		                    Tweet the tweet!
 	                    </button>
+                        -->
                         <script>
                             function changeText() {
                                 document.getElementById("tweetFill").hidden = true;
                                 document.getElementById("tweetFrame").hidden = false;
                                 document.getElementById("tweetFrame").src = "/tweets/new";
                             }
-                            function sendTweet() {
-                                //POST https://api.twitter.com/1.1/statuses/update.json?status=Maybe%20he%27ll%20finally%20find%20his%20keys.%20%23peterfalk
-                                
-                                <% 
-                                def prepare_access_token(oauth_token, oauth_token_secret)
-                                    consumer = OAuth::Consumer.new("APIKey", "APISecret", { :site => "https://api.twitter.com", :scheme => :header })
-
-                                    # now create the access token object from passed values
-                                    token_hash = { :oauth_token => oauth_token, :oauth_token_secret => oauth_token_secret }
-                                    access_token = OAuth::AccessToken.from_hash(consumer, token_hash )
-
-                                    return access_token
-                                end
-
-                                Twitter.configure do |config|
-                                    config.consumer_key = 'YOUR_CONSUMER_KEY'
-                                    config.consumer_secret = 'YOUR_CONSUMER_SECRET'
-                                    config.oauth_token = 'YOUR_OAUTH_TOKEN'
-                                    config.oauth_token_secret = 'YOUR_OAUTH_TOKEN_SECRET'
-                                end
-
-                                client = Twitter::Client.new
-                                client.update('Hello, from Twitter Gem!')
-
-                                %>
-                                
-                                $.ajax({ 
-                                    url: "https://api.twitter.com/1.1/statuses/update.json",
-                                    data: {
-                                    status: document.getElementById("tweetFrame").innerHTML.document.getElementById("tweetTextOut").innerHTML
-                                    },
-                                    method: 'POST'
-                                })
+                            /*function getTweetText() {
+                                return document.getElementById("tweetFrame").contentWindow.document.body.innerHTML;
                             }
+                            function sendTweet() {
+                                if (getTweetText() != ""){
+                                    <%#
+                                    
+                                    client = Twitter::REST::Client.new do |config|
+                                        config.consumer_key = 'lfjCO7e0dypEhN1eULhSfyRJd'
+                                        config.consumer_secret = 'ENV["TWITTER_SECRET"]'
+                                        config.oauth_token = '906293023323156480-wz5KR9lxQWBAt6NxBVAhf1jXjcjX9DZ'
+                                        config.oauth_token_secret = 'ENV["AUTH_SECRET"]'
+                                    end
+
+                                    @param = capture do
+                                        javascript_tag "getTweetText();"
+                                    end
+                                    client.update(@param)
+                                    
+                                    %>
+
+                                }
+                            }*/
                         </script>
                     </div>
                 </div>
@@ -167,41 +153,11 @@
     <footer id="footer">
         <div class="container">
             <div id="footer-top">
-                <div class="footer-signup left">
-                    <h5>Join Our Movement</h5>
-                    <div class="simple-form">
-                        <form id="newsletter_signup" class=" newsletter_signup" method="post" action=" " enctype="multipart/form-data">
-                            <div class="hiddenFields">
-                                <input type="hidden" name="ACT" value="53" />
-                                <input type="hidden" name="FDATA" value="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"
-                                />
-                                <input type="hidden" name="site_id" value="1" />
-                                <input type="hidden" name="csrf_token" value="844117f3f9ce65db75a21ab9b1bc9ec9ed09cb1b" />
-                            </div>
-                            <div class="dform"></div>
-                            <input type="email" name="fields[11]" class="email" placeholder="Enter Your Email" autocomplete="email" required>
-                            <input type="text" name="fields[12]" class="zipcode" placeholder="Zip Code" autocomplete="postal-code" required>
-                            <input type="submit" value="Submit" class="submit">
-                        </form>
-                    </div>
-                </div>
-                <div class="footer-social right">
-                    <h5>Follow Us</h5>
-                    <ul class="list-social">
-                        <li class="footer-social-link facebook"><a href="https://www.facebook.com/DonaldTrump/" target="_blank" class="icon">Facebook</a></li>
-                        <li class="footer-social-link twitter"><a href="https://twitter.com/realDonaldTrump" target="_blank" class="icon">Twitter</a></li>
-                        <li class="footer-social-link instagram"><a href="https://www.instagram.com/teamtrumpofficial/" target="_blank" class="icon">Instagram</a></li>
-                        <li class="footer-social-link youtube"><a href="https://www.youtube.com/channel/UCAql2DyGU2un1Ei2nMYsqOA" target="_blank" class="icon">YouTube</a></li>
-                    </ul>
-                </div>
-                <div class="clear"></div>
             </div>
             <div id="footer-bottom">
                 <p class="footer-legal left">Paid for by Donald J. Trump for President, Inc.</p>
                 <ul class="footer-links right">
-                    <li><a href="privacy-policy/index.html">Privacy Policy</a></li>
-                    <li><a href="terms-of-service/index.html">Terms & Conditions</a></li>
-                    <li><a href="contact/index.html">Contact Us</a></li>
+                    <li><a href="http://2017f.pennapps.com/">Developed for PennApps XVI</a></li>
                 </ul>
             </div>
         </div>
