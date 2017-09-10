@@ -1,3 +1,4 @@
+require_relative "current_state.rb"
 
 dictionary = Hash.new
 
@@ -12,6 +13,7 @@ def create_dictionary(dict, text)
 			string_left_to_parse = string_left_to_parse[(word.length + 1)..-1]
 		end
 	end
+	dict.store(".", Hash.new) #adding "." for start of sentences
 
 	#loop through dictionary to update word_sets
 	File.open(text).each do |line|
@@ -21,6 +23,14 @@ def create_dictionary(dict, text)
 		string_left_to_parse = string_left_to_parse[(first_word.length + 1)..-1]
 
 		last_word = "" #store the last word to put that info into the word_map
+
+		period_word_map = dict["."] #mapping the start of sentences "." to the first words
+		if(period_word_map[first_word].eql? nil)
+			period_word_map.store(first_word, 1)
+		else
+			period_num_appearances = period_word_map[first_word] + 1
+			period_word_map.store(first_word, period_num_appearances)
+		end
 
 		while !(string_left_to_parse.eql? nil) do #looping through every word
 			next_word = find_next_word(string_left_to_parse)
@@ -40,8 +50,6 @@ def create_dictionary(dict, text)
 			string_left_to_parse = string_left_to_parse[(next_word.length + 1)..-1]
 		end
 	end
-
-
 end
 
 #Identifying different words in string
@@ -55,12 +63,6 @@ def find_next_word(text)
 		char + find_next_word(text[1..-1])
 	end
 end
-
-#puts find_next_word("dog")
-create_dictionary(dictionary, "test_text.txt")
-puts dictionary
-#puts "".length
-
 
 #output a word based on the probability of word appearing in a phrase
 def choose_word(ptr_string, dictionary)
@@ -79,3 +81,21 @@ def choose_word(ptr_string, dictionary)
 	key_array = set.keys
 	return key_array[index]
   end
+
+create_dictionary(dictionary, "test_text.txt")
+#write this to the json file
+
+#puts dictionary
+
+tweet = ""
+cur_state =  new_state(".", ".")
+new_word = choose_word(cur_state[1], dictionary)
+while(tweet.length < 141)#while(!(new_word.eql? "."))
+	next_state = shift_in(cur_state, new_word)
+	tweet = tweet + next_state[1] + " "
+	cur_state = next_state
+	new_word = choose_word(cur_state[1], dictionary)
+end
+puts tweet
+#cur_state.new_state()
+
