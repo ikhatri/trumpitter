@@ -1,17 +1,28 @@
 
 dictionary = Hash.new
 
-def create_dictionary(text)
+def create_dictionary(dict, text)
 	#Reading from the tweetText.txt
 	dict = Hash.new
 	File.open(text).each do |line|
-		string_left_to_parse = line[0..line.length - 2]
-		puts string_left_to_parse
+		string_left_to_parse = line[0..line.length - 2] #making the line the right length
+		
 		while !(string_left_to_parse.eql? nil) do #looping through every word
 			word = find_next_word(string_left_to_parse)
 			dict.store(word, Hash.new) #add word to the hashtable dictionary mapping to empty word_sets
 			string_left_to_parse = string_left_to_parse[(word.length + 1)..-1]
 		end
+	end
+
+
+	File.open(text).each do |line|
+		string_left_to_parse = line[0..line.length - 2] #making the line the right length
+
+		#remove first word in sentence
+		word = find_next_word(string_left_to_parse)
+		string_left_to_parse = string_left_to_parse[(word.length + 1)..-1]
+
+		puts string_left_to_parse
 	end
 
 	#loop through dictionary to update word_sets
@@ -30,7 +41,7 @@ def find_next_word(text)
 end
 
 #puts find_next_word("dog")
-create_dictionary("test_text.txt")
+create_dictionary(dictionary, "test_text.txt")
 #puts "".length
 
 
