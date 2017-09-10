@@ -83,21 +83,28 @@ def choose_word(ptr_string, dictionary)
 	return key_array[index]
   end
 
-create_dictionary(dictionary, "test_text.txt")
 
-File.open("tweet_text.json", 'w'){|f| f.write(dictionary.to_json)} #write this to the json file
-#puts file
-#puts dictionary
-
-tweet = ""
-cur_state =  new_state(".", ".")
-new_word = choose_word(cur_state[1], dictionary)
-while(tweet.length < 141) #while(!(new_word.eql? "."))
-	next_state = shift_in(cur_state, new_word)
-	tweet = tweet + next_state[1] + " "
-	cur_state = next_state
-	new_word = choose_word(cur_state[1], dictionary)
+def write_to_json(dictionary, file_name)
+	create_dictionary(dictionary, "tweetText.txt")
+	File.open(file_name, 'w'){|f| f.write(dictionary.to_json)} #write this to the json file
 end
-puts tweet
-#cur_state.new_state()
+
+#write_to_json(dictionary, "tweet_text.json")
+def make_tweet()
+	tweet_file = File.read("tweet_text.json")
+	dictionary = JSON.parse(tweet_file)
+	tweet = ""
+	cur_state =  new_state(".", ".")
+	new_word = choose_word(cur_state[1], dictionary)
+	while(tweet.length < 141) #while(!(new_word.eql? "."))
+		next_state = shift_in(cur_state, new_word)
+		tweet = tweet + next_state[1] + " "
+		cur_state = next_state
+		new_word = choose_word(cur_state[1], dictionary)
+	end
+	puts tweet
+end
+
+make_tweet()
+
 
