@@ -20,7 +20,8 @@ def create_dictionary(dict, text)
 		first_word = find_next_word(string_left_to_parse)
 		string_left_to_parse = string_left_to_parse[(first_word.length + 1)..-1]
 
-		#store the last word to 
+		last_word = "" #store the last word to put that info into the word_map
+
 		while !(string_left_to_parse.eql? nil) do #looping through every word
 			next_word = find_next_word(string_left_to_parse)
 			word_map = dict[first_word]
@@ -28,6 +29,9 @@ def create_dictionary(dict, text)
 			if(word_map[next_word].eql? nil)
 				word_map.store(next_word, 1)
 			else
+				if(next_word.eql? ".")
+					last_word = first_word
+				end
 				num_appearances = word_map[next_word] + 1
 				word_map.store(next_word, num_appearances)
 			end
