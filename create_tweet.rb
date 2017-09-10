@@ -1,4 +1,5 @@
-require_relative "current_state.rb"
+require_relative 'current_state.rb'
+require 'json'
 
 dictionary = Hash.new
 
@@ -83,14 +84,15 @@ def choose_word(ptr_string, dictionary)
   end
 
 create_dictionary(dictionary, "test_text.txt")
-#write this to the json file
 
+File.open("tweet_text.json", 'w'){|f| f.write(dictionary.to_json)} #write this to the json file
+#puts file
 #puts dictionary
 
 tweet = ""
 cur_state =  new_state(".", ".")
 new_word = choose_word(cur_state[1], dictionary)
-while(tweet.length < 141)#while(!(new_word.eql? "."))
+while(tweet.length < 141) #while(!(new_word.eql? "."))
 	next_state = shift_in(cur_state, new_word)
 	tweet = tweet + next_state[1] + " "
 	cur_state = next_state
