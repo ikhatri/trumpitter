@@ -1,24 +1,23 @@
-#Identifying different words in string
-dictionary = {}
+
+dictionary = Hash.new
+
 def create_dictionary(text)
 	#Reading from the tweetText.txt
+	dict = Hash.new
 	File.open(text).each do |line|
 		string_left_to_parse = line[0..line.length - 2]
 		puts string_left_to_parse
-		while !(string_left_to_parse.eql? nil) do
-			#puts string_left_to_parse
+		while !(string_left_to_parse.eql? nil) do #looping through every word
 			word = find_next_word(string_left_to_parse)
-			#puts word
-			#print word.length + 1
-			#print "    "
-			#puts string_left_to_parse.length
+			dict.store(word, Hash.new) #add word to the hashtable dictionary mapping to empty word_sets
 			string_left_to_parse = string_left_to_parse[(word.length + 1)..-1]
-			#puts "reached"
-			#puts string_left_to_parse.length
 		end
 	end
+
+	#loop through dictionary to update word_sets
 end
 
+#Identifying different words in string
 def find_next_word(text)
 	char = text[0]
 	if(char.eql? " ")
