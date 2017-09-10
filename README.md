@@ -28,7 +28,7 @@ In order to set up trumpitter on your local machine, you will need ruby, and pos
 ### linux/unix
 TBD
 
-# contributers
+# contributors
 Ishan Khatri - ishan@khatri.io
 
 Jasmine Lee - leejas2017@gmail.com 
