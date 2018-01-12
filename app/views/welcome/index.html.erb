@@ -53,8 +53,8 @@
                         <li><a href="http://www.theonion.com/" target="_blank" class="header-nav-link ">News</a></li>
                         <li><a href="https://www.theodysseyonline.com/here-are-15-ugly-pictures-of-hillary-clinton-and-donald-trump"
                                 target="_blank" class="header-nav-link ">Gallery</a></li>
-                        <li><a href="https://github.com/ikhatri/trumpitter" class="header-nav-link ">About</a></li>
-                        <li><a class="header-nav-link open-social-hub">Follow Us</a></li>
+                        <li><a href="https://github.com/ikhatri/trumpitter" class="header-nav-link " target="_blank">About</a></li>
+                        <li><a class="header-nav-link open-social-hub" href="https://twitter.com/patrumpitter" target="_blank">Follow Us</a></li>
                     </ul>
                 </nav>
                 <a href="https://infowipes.com" target="_blank" id="header-shop-btn" class="btn btn-text-white btn-border-white">Shop</a>
@@ -68,16 +68,15 @@
                     <nav>
                         <ul>
                             <li><a class="level-1" href="index.html" target="_blank">Home</a></li>
-                            <li><a class="level-1" href="http://www.theonion.com/" target="_blank">News</a></li>
+                            <li><a class="level-1" href="https://www.theonion.com/" target="_blank">News</a></li>
                             <li><a class="level-1" href="https://www.theodysseyonline.com/here-are-15-ugly-pictures-of-hillary-clinton-and-donald-trump" target="_blank">Gallery</a></li>
                             <li><a class="level-1" href="https://github.com/ikhatri/trumpitter" target="_blank">About</a></li>
-                            <li><a class="level-1" href="https://infowipes.com"
-                                    target="_blank">Shop</a></li>
+                            <li><a class="level-1" href="https://infowipes.com" target="_blank">Shop</a></li>
                             <li>
                                 <a class="level-1" href="https://action.aclu.org/secure/donate-to-aclu"
                                     target="_blank">Contribute</a>
                             </li>
-                            <li><a class="level-1 open-social-hub">Follow Us</a></li>
+                            <li><a class="level-1" href="https://twitter.com/patrumpitter" target="_blank">Follow Us</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -94,7 +93,7 @@
 
                         </iframe>
                         <h5>- The Trumpitter</h5>
-                        <button onclick="changeText();" class = "btn btn-text-white btn-border-white arrow-btn">
+                        <button onclick="changeText();" class = "btn btn-text-white btn-border-white arrow-btn" style="color:#BF0000">
 		                    Write the tweet!
 	                    </button>
                         <!--
@@ -155,7 +154,8 @@
             <div id="footer-top">
             </div>
             <div id="footer-bottom">
-                <p class="footer-legal left">Paid for by Donald J. Trump for President, Inc.</p>
+                <!--<p class="footer-legal left"><a href="disclaimer.html">Disclaimer</a></p>-->
+                <p class="footer-legal left"><%= link_to 'Disclaimer', welcome_disclaimer_path %></p>
                 <ul class="footer-links right">
                     <li><a href="http://2017f.pennapps.com/">Developed for PennApps XVI</a></li>
                 </ul>
